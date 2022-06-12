@@ -1,11 +1,15 @@
-@include('head');
+@extends('layouts.app')
+@section('contenu')
+
+{{-- ! Start --}}
+
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">Apprendre la programmation</h1>
             <p class="lead text-muted">Ce site vous propose une formation gratuite en langages de programmation. Les différentes formations sont accompagnées par des vidéos explicatives pour une meilleure maîtrise.</p>
             <p>
-                <a href="register.html" class="btn btn-primary my-2">Créer un compte</a>
+                <a href="/register" class="btn btn-primary my-2">Créer un compte</a>
             </p>
         </div>
     </div>
@@ -48,7 +52,20 @@
                     </div>
                 </div>
             </div>
+               @foreach ($list as $item )
+               <div class="col">
+                <div class="card shadow-sm text-center">
+                    <img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="img-fluid" />
 
+                    <div class="card-body">
+                        <h5 class="card-title">{{$item->nom}}</h5>
+                        <p class="card-text">{{$item->description}}</p>
+                        <a class="btn btn-sm btn-outline-primary" href="{{route('cours.getCoursById',$item->id)}}" role="button">Voir</a>
+                    </div>
+                </div>
+            </div>
+                   
+               @endforeach
         </div>
     </div>
 </div>
@@ -58,8 +75,10 @@
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="text-center fw-light"><strong>Nous Contacter</strong></h1>
             <p class="lead text-muted">Pour tous vos besoins et toutes vos idées, n'hésitez pas à nous contacter.</p>
-            <a href="contact.html" class="btn btn-outline-primary my-2">Nous Contacter</a>
+            <a href="{{route('contact.showView')}}" class="btn btn-outline-primary my-2">Nous Contacter</a>
         </div>
     </div>
 </section>
-@include('foot');
+{{-- !  end  --}}
+@endsection
+

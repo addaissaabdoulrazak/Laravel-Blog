@@ -1,4 +1,6 @@
-@include('head');
+@extends('layouts.app')
+
+@section('contenu')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-md-2 px-3 py-3 pt-md-4 pb-md-4">
@@ -72,6 +74,7 @@
                                 </div>
                                 @endif
                             </div>
+                   
                         </div>
                         <div class="row mb-3">
                             <label for="message" class="col-sm-3 offset-sm-1 col-form-label">Message</label>
@@ -102,4 +105,4 @@
     </div>
 </div>
 
-@include('foot');
+@endsection

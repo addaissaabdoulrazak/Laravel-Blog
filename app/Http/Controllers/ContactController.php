@@ -20,12 +20,14 @@ class ContactController extends Controller
         /**** Rules ****/
         $this->validate($request, [
             'name' => 'required|alpha|max:255',
-            'email' => 'required|string|email|max:191|unique:users',
+            'email' => 'required|string|email|max:191|unique:contacts',
             'message' => 'required|alpha|max:255',
             'subject' => 'required|alpha|max:255',
 
         ]);
         $val = ['message', 'Votre message a été envoyé correctement'];
+
+   
 
         // insert
         DB::table('contacts')->insert(
@@ -42,4 +44,5 @@ class ContactController extends Controller
         // Session::put('message', "Votre message a été envoyé correctement");
 
     }
+
 }

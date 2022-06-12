@@ -1,4 +1,7 @@
-@include('head')
+@extends('layouts.app')
+@section('contenu')
+    
+
 <table border="1" style="width:50%;" class="table table-success table-striped">
 
 
@@ -24,4 +27,4 @@
     </tr>
     @endforeach
 </table>
-@include('foot')
+@endsection
