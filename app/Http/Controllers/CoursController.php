@@ -7,29 +7,43 @@ use Illuminate\Http\Request;
 
 class CoursController extends Controller
 {
-    public function addCourse()
+    public function showCours()
     {
     
-        return view("admin.ajouterCours");
+        return view("admin.showCours");
     }
-    public function save(Request $request)
+    public function save(Request $req)
     {
-        $request->validate([
+    //check your file extension to secure your application
+        $req->validate([
             "course_name" => "required",
-            // "icon_url" => "image|nullable|max:1999",
+            "icon_url" => 'image|mimes:csv,txt,xlx,xls,pdf,jpeg,jpg|max:2048',
             "description" => "required",
             "course_text" => "required",
         ]);
-        $course =new Cours();
-        $course->nom =$request->input('course_name');
-        $course->icone =$request->input('icon_url');
-        $course->description =$request->input('description');
-        $course->texte =$request->input('course_text');
-        // dd(  $course);
-        $course->save();
-        return redirect("/addCourse")->with('status',"le cours a été ajouter avec succèss");
-    }
 
+        if($req->hasFile('icon_url')) {
+            
+            $fileNameWithExtension = time().'_'.$req->file('icon_url')->getClientOriginalName();
+            
+            $req->file('icon_url')->storeAs('uploads', $fileNameWithExtension, 'public');
+        
+        }else{
+            $fileNameWithExtension="no image";
+        }
+        // 
+        $course =new Cours();
+        $course->nom =$req->input('course_name');
+        $course->icone =$fileNameWithExtension;
+        $course->description =$req->input('description');
+        $course->texte =$req->input('course_text');
+
+        
+        $course->save();
+        return redirect()->route('cours.show')->with('status',"le cours a été ajouter avec succèss");
+  
+
+}
     public function getCoursById($id)
     {
        $itemCourse=Cours::find($id);
@@ -68,7 +82,7 @@ class CoursController extends Controller
        $cours_item=Cours::find($id);
           $cours_item->delete();
 
-       return redirect("/");
+       return back()->with("status","Supprimer avec succèss");
    }
 
    public function showTableCourse()

@@ -51,7 +51,7 @@ route::get('/register', function () {
 
 #cours -> cours/create -> cours/edit -> cours/update -> cours/delete
 //--========================================== Cours =====================================--
-route::get('/addCourse', [CoursController::class, 'addCourse'])->name('cours'); 
+route::get('/showCours', [CoursController::class, 'showCours'])->name('cours.show'); 
 route::post('/saveCourse',[CoursController::class, 'save'])->name('cours.save') ;   
 route::get('/getCoursById/{id}',[CoursController::class, 'getCoursById'])->name('cours.getCoursById')->middleware('admin');
 route::get('/edit/{id}',[CoursController::class, 'edit'])->name('cours.edit')->middleware('admin');

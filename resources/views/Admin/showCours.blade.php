@@ -8,7 +8,7 @@
             <div class="card-header">Nouveau cours</div>
 
             <div class="card-body">
-                <form class="form-horizontal" method="POST" action="{{route('cours.save')}}">
+                <form class="form-horizontal" method="POST" action="{{route('cours.save')}}" enctype="multipart/form-data">
                   {{-- ! Important --}}
                   @csrf 
                   {{-- ! --}}
@@ -27,7 +27,7 @@
                     <div class="row mb-3">
                         <label for="icon_url" class="col-sm-3 offset-sm-1 col-form-label">URL icone</label>
                         <div class="col-sm-7">
-                          <input type="text" class="form-control" id="icon_url" name="icon_url">
+                          <input type="file" class="form-control" id="icon_url" name="icon_url">
                         </div>
                     </div>
                     <div class="row mb-3">

@@ -2,7 +2,12 @@
 
 @section('contenu')
     
+@if(Session::has('status'))
+<div class="alert alert-success">
+  {{session::get('status')}}
+</div>
 
+@endif
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-md-2 px-3 py-3 pt-md-4 pb-md-4">
